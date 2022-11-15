@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import './args/FormModelArgs.dart';
 import 'package:http/http.dart' as http;
@@ -12,8 +11,6 @@ class FormModel extends StatefulWidget {
 }
 
 class _FormModelState extends State<FormModel> {
-  // late Future<FormModelArgs> futureArgs;
-
   var prediction;
 
   Future apiCall(
@@ -45,19 +42,10 @@ class _FormModelState extends State<FormModel> {
           ),
           encoding: encoding);
       prediction = json.decode(response.body)['prediction'];
-      print(prediction);
-      // var prediction = jsonDecode(response.body)['prediction'];
-      // print(prediction);
     } catch (e) {
       print(e);
     }
   }
-
-  // @override
-  // void initState() {
-  //   // futureArgs = apiCall() ;
-  //   super.initState();
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -84,21 +72,6 @@ class _FormModelState extends State<FormModel> {
           double.parse(args.taste),
         ),
         builder: (context, snapshot) {
-          // if (snapshot.connectionState == ConnectionState.done) {
-          //   print('in Snaphot data');
-          //   if (snapshot.hasError) {
-          //     return Text('${snapshot.error}');
-          //   } else if (snapshot.hasData) {
-          //     final data = snapshot.data as String;
-          //     print(data);
-          //     return Center(
-          //       child: Text(
-          //         data,
-          //         style: const TextStyle(fontSize: 18),
-          //       ),
-          //     );
-          //   }
-          // }
           return 
           prediction == null 
           ? const Center(child: CircularProgressIndicator(),)
